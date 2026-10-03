@@ -10,7 +10,7 @@ export const site = {
   // Paste the token from Google Search Console (URL-prefix property → verify via
   // "HTML tag" → copy the content="..." value here), then redeploy, to verify
   // ownership and submit the sitemap. Leave "" to omit the tag.
-  googleSiteVerification: "",
+  googleSiteVerification: "zJMpsLKLXAJ39o1_pKxRbIXwJDjSy51EBb36NfYsc7U",
 };
 
 export type Product = { id: string; name: string; tagline: string; price: string; url: string };
