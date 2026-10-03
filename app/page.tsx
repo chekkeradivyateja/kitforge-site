@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getAllMeta } from "@/lib/articles";
 import { getProduct, productUrl } from "@/lib/site";
+import Demo from "@/components/Demo";
 
 const p = getProduct();
 const buy = (c: string) => productUrl(p, c);
@@ -20,51 +21,66 @@ const STEPS = [
   ["Ship, or re-theme later", "Hand off clean tokens to developers, or update the color anytime."],
 ];
 
+const INCLUDES = [
+  "5 palettes × 11 perceptual shades",
+  "Light & dark themes as Figma variables",
+  "25 semantic tokens (surfaces, text, actions, focus…)",
+  "48 automatic WCAG 2.1 AA contrast checks",
+  "59 component variants, bound to variables",
+  "4/8/12-column grids · 8px spacing · type & shadow styles",
+  "Re-run to re-theme any time",
+  "Contrast-audit tool for any file",
+];
+
 const FAQ = [
   ["Who is it for?", "Freelance UI designers, agencies and product teams who rebuild the same color ramps, buttons and dark themes for every project."],
   ["Does it work on my existing file?", "Yes. It generates into the file you already have open, and the contrast audit works on any file."],
   ["Will developers be able to use the output?", "Yes — everything is real Figma variables and semantic tokens, ready to export to code."],
   ["What if I change my brand color?", "Run Kitforge again and choose Update. Variables and styles update in place; components already in your designs re-theme without breaking."],
+  ["How do I get it?", "It's a one-time purchase on Gumroad — no subscription. You get the plugin and every update."],
 ];
 
 export default function Home() {
   const articles = getAllMeta().slice(0, 6);
   return (
     <>
-      <section className="hero">
-        <p className="eyebrow">Figma plugin · design systems</p>
-        <h1>One brand color in.<br />A whole design system out.</h1>
-        <p className="lede">
-          Stop rebuilding the same palettes, buttons and dark themes for every
-          client. Kitforge turns one color into a connected, accessible Figma
-          design system — variables, light &amp; dark themes, 59 components,
-          grids and tokens — in seconds.
-        </p>
-        <div className="hero-cta">
-          <a className="cta-btn" href={buy("hero")}>Get Kitforge — {p.price} →</a>
-          <Link className="ghost-btn" href="/articles/">Read the guides</Link>
+      <section className="hero2">
+        <div className="hero2-copy">
+          <p className="eyebrow">Figma plugin · design systems</p>
+          <h1>One brand color in.<br /><span className="grad">A whole design system</span> out.</h1>
+          <p className="lede">
+            Stop rebuilding the same palettes, buttons and dark themes for every
+            client. Kitforge turns one color into a connected, accessible Figma
+            design system — in seconds.
+          </p>
+          <div className="hero-cta">
+            <a className="cta-btn" href={buy("hero")}>Get Kitforge — {p.price} →</a>
+            <a className="ghost-btn" href="#try">Try it live ↓</a>
+          </div>
+          <ul className="trust">
+            <li>One-time, no subscription</li><li>Works on your existing file</li><li>WCAG-checked output</li>
+          </ul>
         </div>
-        <p className="reassure">One-time purchase · works on your existing Figma file · WCAG-checked output</p>
+        <figure className="hero2-shot">
+          {/* DEMO VIDEO: drop a ~30s demo.mp4 in /public and replace this <img> with:
+             <video src="/demo.mp4" poster="/kitforge-ui.png" controls playsInline muted loop /> */}
+          <img src="/kitforge-ui.png" width={1005} height={565}
+            alt="The Kitforge plugin running in Figma: a brand-colour input, a live 11-shade palette preview, light and dark component previews, and a 48/48 WCAG AA pass." />
+          <figcaption>The plugin in Figma — colour in, full system out, 48/48 WCAG&nbsp;AA.</figcaption>
+        </figure>
       </section>
 
-      <section className="showcase">
-        {/* DEMO VIDEO: once you record a ~30s clip, drop demo.mp4 in /public and
-            replace the <img> below with:
-            <video src="/demo.mp4" poster="/kitforge-ui.png" controls playsInline
-                   muted loop width={1005} height={565} /> */}
-        <img src="/kitforge-ui.png" width={1005} height={565}
-             alt="The Kitforge plugin running in Figma: a brand colour input, a live preview of 11-shade palettes, light and dark component previews, and a 48/48 WCAG AA pass." />
-        <p className="shot-cap">The plugin building a full system from one colour — live palettes, light &amp; dark components, and a 48/48 WCAG&nbsp;AA pass.</p>
+      <section id="try" className="try">
+        <h2>See it work — pick a color</h2>
+        <p className="lead center">This is a taste in your browser. The plugin does the whole system inside Figma.</p>
+        <Demo />
       </section>
 
       <section>
         <h2>What it builds</h2>
         <div className="feature-grid">
           {CREATES.map(([t, d]) => (
-            <div key={t} className="feature">
-              <h3>{t}</h3>
-              <p>{d}</p>
-            </div>
+            <div key={t} className="feature"><h3>{t}</h3><p>{d}</p></div>
           ))}
         </div>
       </section>
@@ -76,7 +92,18 @@ export default function Home() {
             <li key={t}><span className="step-n">{i + 1}</span><div><strong>{t}</strong><p>{d}</p></div></li>
           ))}
         </ol>
-        <div className="center"><a className="cta-btn" href={buy("how")}>Generate your system — {p.price} →</a></div>
+      </section>
+
+      <section className="pricing">
+        <div className="price-card">
+          <p className="eyebrow">One-time purchase</p>
+          <div className="price"><span className="amt">{p.price}</span><span className="per">· yours forever</span></div>
+          <ul className="incl">
+            {INCLUDES.map((i) => (<li key={i}>{i}</li>))}
+          </ul>
+          <a className="cta-btn wide" href={buy("pricing")}>Get Kitforge on Gumroad →</a>
+          <p className="reassure">Secure checkout via Gumroad · instant download</p>
+        </div>
       </section>
 
       {articles.length > 0 && (
@@ -104,6 +131,8 @@ export default function Home() {
           <a className="cta-btn" href={buy("footer")}>Get Kitforge — {p.price} →</a>
         </div>
       </section>
+
+      <a className="buybar" href={buy("sticky")}>Get Kitforge — {p.price} →</a>
     </>
   );
 }
