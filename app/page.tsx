@@ -47,6 +47,16 @@ export default function Home() {
         <p className="reassure">One-time purchase · works on your existing Figma file · WCAG-checked output</p>
       </section>
 
+      <section className="showcase">
+        {/* DEMO VIDEO: once you record a ~30s clip, drop demo.mp4 in /public and
+            replace the <img> below with:
+            <video src="/demo.mp4" poster="/kitforge-ui.png" controls playsInline
+                   muted loop width={1005} height={565} /> */}
+        <img src="/kitforge-ui.png" width={1005} height={565}
+             alt="The Kitforge plugin running in Figma: a brand colour input, a live preview of 11-shade palettes, light and dark component previews, and a 48/48 WCAG AA pass." />
+        <p className="shot-cap">The plugin building a full system from one colour — live palettes, light &amp; dark components, and a 48/48 WCAG&nbsp;AA pass.</p>
+      </section>
+
       <section>
         <h2>What it builds</h2>
         <div className="feature-grid">
