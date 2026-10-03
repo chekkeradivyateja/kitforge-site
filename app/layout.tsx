@@ -7,7 +7,17 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: { default: `${site.name} — Figma Design System Generator`, template: `%s — ${site.name}` },
   description: site.tagline,
-  openGraph: { title: site.name, description: site.tagline, url: site.url, type: "website" },
+  openGraph: {
+    title: `${site.name} — Figma Design System Generator`,
+    description: site.tagline, url: site.url, siteName: site.name, type: "website",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Kitforge — a full Figma design system from one brand color" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} — Figma Design System Generator`,
+    description: site.tagline, images: ["/og.png"],
+  },
+  ...(site.googleSiteVerification ? { verification: { google: site.googleSiteVerification } } : {}),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

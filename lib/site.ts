@@ -7,6 +7,10 @@ export const site = {
     "variables, light & dark themes, 59 components and tokens, in seconds.",
   url: "https://kitforge-site.vercel.app",
   author: "Kitforge",
+  // Paste the token from Google Search Console (URL-prefix property → verify via
+  // "HTML tag" → copy the content="..." value here), then redeploy, to verify
+  // ownership and submit the sitemap. Leave "" to omit the tag.
+  googleSiteVerification: "",
 };
 
 export type Product = { id: string; name: string; tagline: string; price: string; url: string };
